@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Correct `dsps_biquad_gen_allpass180_f32` to generate a first-order 180 degree all-pass response instead of duplicating the second-order 360 degree response
+
 ## [1.8.2] 2026-05-11
 ### Fixed
 - Row dot product calculation for int8

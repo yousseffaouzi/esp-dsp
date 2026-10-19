@@ -130,12 +130,12 @@ esp_err_t dsps_biquad_gen_allpass360_f32(float *coeffs, float f, float qFactor);
 /**
  * @brief   Allpass 180 degree IIR filter coefficients
  *
- * Coefficients for all pass 2nd order IIR filter (bi-quad) with 180 degree phase shift
+ * Coefficients for a first order all pass IIR filter with 180 degree total phase shift.
  * The implementation use ANSI C and could be compiled and run on any platform
  *
  * @param coeffs: result coefficients. b0,b1,b2,a1,a2, a0 are not placed to the array and expected by IIR as 1
- * @param f: filter notch frequency in range of 0..0.5 (normalized to sample frequency)
- * @param qFactor: Q factor of filter
+ * @param f: all pass break frequency normalized to sample frequency, where 0 < f < 0.5
+ * @param qFactor: unused for this generator, kept for API compatibility
  *
  * @return
  *      - ESP_OK on success

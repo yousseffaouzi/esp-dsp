@@ -181,28 +181,16 @@ esp_err_t dsps_biquad_gen_allpass360_f32(float *coeffs, float f, float qFactor)
 
 esp_err_t dsps_biquad_gen_allpass180_f32(float *coeffs, float f, float qFactor)
 {
-    if (qFactor <= 0.0001) {
-        qFactor = 0.0001;
-    }
-    float Fs = 1;
+    (void)qFactor;
 
-    float w0 = 2 * M_PI * f / Fs;
-    float c = cosf(w0);
-    float s = sinf(w0);
-    float alpha = s / (2 * qFactor);
+    float t = tanf((float)M_PI * f);
+    float k = (1.0f - t) / (1.0f + t);
 
-    float b0 = 1 - alpha;
-    float b1 = -2 * c;
-    float b2 = 1 + alpha;
-    float a0 = 1 + alpha;
-    float a1 = -2 * c;
-    float a2 = 1 - alpha;
-
-    coeffs[0] = b0 / a0;
-    coeffs[1] = b1 / a0;
-    coeffs[2] = b2 / a0;
-    coeffs[3] = a1 / a0;
-    coeffs[4] = a2 / a0;
+    coeffs[0] = -k;
+    coeffs[1] = 1.0f;
+    coeffs[2] = 0.0f;
+    coeffs[3] = -k;
+    coeffs[4] = 0.0f;
     return ESP_OK;
 }
 
